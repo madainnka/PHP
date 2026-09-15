@@ -1,0 +1,150 @@
+Stringi w cudzslowiach interpretuja znaki modyfikacji:
+echo "this will not expand: \n a newline";
+
+Zmienne w Stringach
+Stringi w cudzyslowiach interpretuja zmienne:
+$Number=5;
+echo"Variable value=$Number";
+
+Variable value =5
+
+<?php
+$number=10;
+echo "Liczba to: number" lub $string "Liczba to: $number"
+
+Funkcje stringi
+strlen(), mb_strlen()-Return the Lenght of a String
+<?php
+  echo strlen( "hello world!");
+  echo strlen( "łódż" );
+echo mb_strlen("łódż");
+
+str_word_count()-count words in a string
+<?php
+   echo str_word_count("hello word");
+?>
+
+Funkcje stringi cd
+str_replace()
+<?php
+  echo str_replace("world","dolly","hello world");
+?>
+
+strpos()
+<?php
+  echo strpos("hello", "world");
+?>
+
+$tekst="hello";
+printf("[%s]\n", $tekst); //wpisze [hello]
+printf("[%10s]\n", $tekst); //wpisze [  hello]
+printf("[%-10s]\n", $tekst); //wpisze [hello  ]
+printf("[%.3s]\n", $tekst); //wpisze [hel]
+printf("[%10.3s]\n", $tekst); //wpisze [   hello]
+printf("[%-10.3s]\n", $tekst); //wpisze [hel   ]
+
+printf('%d'\n", $tekst); //wpisze [hello]
+printf('%f'\n", $tekst); 
+printf('%e'\n", $tekst); 
+printf('%b'\n", $tekst); 
+printf('%o'\n", $tekst); 
+printf('%s'\n", $tekst); 
+printf('%x'\n", $tekst); 
+
+Zmienne(variable)
+<?php
+ $foo='bob';
+$bar=&$foo;
+$bar='andy';
+echo $bar;
+echo $foo;
+?>
+jeseli zmienna poprzedzimy slowem static funkcja 0 zostanie pominieta i jest realizowana tylko raz, gdyby nie byla statyczna to ptogram by da ja wiecej niz raz
+
+<?php
+ function test()
+  static $licznik=0;
+  echo $licznik."<br>";
+  $licznik++;
+  }
+  test();
+  test();
+  test();
+
+Stałe
+stle sa to nazwy identyfikujace proste wartosci czyli nie mozna wzmieniac wartosci podczas programu
+zalecane duze litery
+define("CONSTANT", "hello world.");
+echo CONSTANT; 
+
+
+tablice indeksowane
+$cars= array ("volvo", "bmw", "toyota");
+
+$cars=  ["volvo", "bmw", "toyota"];
+
+$cars=[];
+$cars=[0]="opel";
+$cars=[1]="toyota";
+$cars=[2]="bmw";
+
+tablice asocjacyjne
+$age=array("peter"=>"35", "ben"=>"20", "joe"=>"64");
+
+$age=["peter"=>"35", "ben"=>"20", "joe"=>"64"];
+
+$age['peter']="35";
+$age['ben']="20";
+$age['joe']="64";
+
+print_r($zmienna) wypisuje cala tablice
+
+count()
+
+<?php
+  $cars=array("volvo", "bmw", "toyota");
+  echo "size of array cars=".count($cars);
+
+sortowanie tablic
+<?php
+  $cars=array("volvo", "bmw", "toyota");
+ sort ($cars);
+print_r($cars);
+
+rsort($cars);
+print_r($cars);
+
+
+kasowanie ostaniego elemntu tablicy
+array_pop
+
+<?php
+  $a=array("red", "green","blue");
+array_pop($a);
+print_r($a);
+
+array push dodanie lementu na koniec
+<?php
+  $a=array("red","green");
+  array_push($a,"blue","yellow");
+print_r($a);
+
+array shift usuwa pierwszy element array_shift()
+<?php
+ $a=array("a"=>"red","b"=>"green", "c"=>"blue");
+  echo array_shift($a). "<br>";
+print_r($a);
+
+
+array_unshift() dodaje elemnty na poczatek
+
+<?php
+$a=array("a"=>"red","b"=>"green", "c"=>"blue");
+array_unshift($a,"blue");
+print_r($a);
+?>
+
+
+
+
+
