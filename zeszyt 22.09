@@ -1,0 +1,545 @@
+1. Postinkrementacja ++
+Operator ++ zwiększa wartość zmiennej o 1.
+Postinkrementacja – $a++
+Najpierw używana jest stara wartość, a dopiero potem zmienna zostaje zwiększona.
+<?php
+$a = 5;
+
+echo "Powinno być 5: " . $a++ . "<br>";
+echo "Powinno być 6: " . $a . "<br>";
+?>
+
+Wynik:
+Powinno być 5: 5
+Powinno być 6: 6
+
+Do zapamiętania:
+$a++
+
+= najpierw użyj wartości, potem zwiększ ją o 1.
+
+2. Preinkrementacja ++$a
+Przy preinkrementacji zmienna jest zwiększana najpierw, a dopiero później używana.
+<?php
+b=5;echo"Powinnobyć6:".++b . "<br>";
+echo "Powinno być 6: " . $b . "<br>";
+?>
+
+Wynik:
+Powinno być 6: 6
+Powinno być 6: 6
+
+Do zapamiętania:
+++$b
+
+= najpierw zwiększ wartość, potem jej użyj.
+
+3. Instrukcja warunkowa if...else
+Instrukcja if...else pozwala wykonać różny kod w zależności od tego, czy warunek jest prawdziwy.
+<?php
+liczba=10;if(liczba >= 0) {
+    echo "Liczba jest dodatnia lub równa zero";
+} else {
+    echo "Liczba jest ujemna";
+}
+?>
+
+Schemat:
+if (warunek) {
+    // kod wykonywany, gdy warunek jest prawdziwy
+} else {
+    // kod wykonywany, gdy warunek jest fałszywy
+}
+
+
+4. Operator ternary ? :
+Operator ternary jest krótszą wersją prostego if...else.
+Poprawiony program:
+<?php
+$liczba = 10;
+
+wynik=(liczba >= 0) ? "dodatnia" : "ujemna";
+
+echo $wynik;
+?>
+
+Jeżeli:
+$liczba >= 0
+
+jest prawdą, zostanie wyświetlone:
+dodatnia
+
+Jeżeli warunek jest fałszywy:
+ujemna
+
+Schemat:
+$wynik = (warunek) ? wartość_gdy_true : wartość_gdy_false;
+
+Uwaga: w Twoim kodzie brakowało znaku $ przed liczba.
+
+5. array_slice() – wycinanie fragmentu tablicy
+array_slice() służy do pobrania części tablicy.
+<?php
+a=array("red","green","blue","yellow","brown");printr(arrayslice(a, 1, 2));
+?>
+
+Wynik:
+Array ( [0] => green [1] => blue )
+
+Jak działa?
+array_slice($a, 1, 2);
+
+$a – tablica,
+1 – indeks, od którego zaczynamy,
+2 – liczba elementów do pobrania.
+Uwaga: tablice numerowane zaczynają się od indeksu 0.
+Czyli:
+0 → red
+1 → green
+2 → blue
+3 → yellow
+4 → brown
+
+Dlatego od indeksu 1 pobieramy green i blue.
+
+6. array_splice() – dodawanie elementów
+array_splice() pozwala usuwać, dodawać lub zamieniać elementy tablicy.
+Dodawanie elementów
+Poprawiony program:
+<?php
+$a1 = array(0, 1, 2, 3);
+a2=array(5,6);arraysplice(a1, 1, 0, a2);printr(a1);
+?>
+
+Wynik:
+Array ( [0] => 0 [1] => 5 [2] => 6 [3] => 1 [4] => 2 [5] => 3 )
+
+Składnia:
+array_splice($tablica, $miejsce, liczba_usuwanych, $elementy);
+
+Tutaj:
+array_splice($a1, 1, 0, $a2);
+
+1 – zaczynamy od indeksu 1.
+0 – nie usuwamy żadnego elementu.
+$a2 – wstawiamy elementy z drugiej tablicy.
+
+7. array_splice() – tablice asocjacyjne
+Tablica asocjacyjna posiada klucze zamiast zwykłych indeksów.
+<?php
+$wiek1 = array(
+    "Ala" => "1",
+    "Ola" => "2"
+);
+
+wiek2=array("Kasia"=>"5","Agata"=>"6");arraysplice(wiek1, 1, 0, wiek2);printr(wiek1);
+?>
+
+Ważne: array_splice() nie zachowuje kluczy tekstowych z tablicy wstawianej w taki sam sposób jak funkcje przeznaczone do łączenia tablic asocjacyjnych.
+Jeżeli chcemy po prostu połączyć takie tablice, wygodniejsze może być:
+wiek1=arraymerge(wiek1, $wiek2);
+
+
+8. array_splice() – usuwanie elementów
+<?php
+a1=array(0,1,2,3);arraysplice(a1, 0, 1);
+
+print_r($a1);
+?>
+
+Wynik:
+Array ( [0] => 1 [1] => 2 [2] => 3 )
+
+array_splice($a1, 0, 1);
+
+oznacza:
+rozpocznij od indeksu 0,
+usuń 1 element.
+Można również zastąpić usuwane elementy innymi:
+<?php
+$a1 = array(0, 1, 2, 3);
+a2=array(5,6);arraysplice(a1, 0, 1, a2);printr(a1);
+?>
+
+Tutaj pierwszy element zostanie usunięty, a w jego miejsce zostaną wstawione 5 i 6.
+
+9. array_splice() – zamiana elementów
+<?php
+$a1 = array(0, 1, 2, 3);
+a2=array(5,6);arraysplice(a1, 0, 2, a2);printr(a1);
+?>
+
+Wynik:
+Array ( [0] => 5 [1] => 6 [2] => 2 [3] => 3 )
+
+Tutaj:
+array_splice($a1, 0, 2, $a2);
+
+oznacza:
+zacznij od indeksu 0,
+usuń 2 elementy (0 i 1),
+wstaw w ich miejsce 5 i 6.
+
+10. Tablice asocjacyjne
+Tablica asocjacyjna przechowuje dane w postaci:
+klucz => wartość
+
+Przykład:
+<?php
+$age = array(
+    "Peter" => "35",
+    "Ben" => "37",
+    "Joe" => "43"
+);
+?>
+
+Tutaj:
+Peter → 35
+Ben   → 37
+Joe   → 43
+
+asort()
+asort() sortuje tablicę według wartości, zachowując klucze.
+asort($age);
+
+ksort()
+ksort() sortuje tablicę według kluczy.
+ksort($age);
+
+Przykład:
+<?php
+age=array("Peter"=>35,"Ben"=>37,"Joe"=>43);ksort(age);
+
+print_r($age);
+?>
+
+
+11. implode() – zamiana tablicy na tekst
+implode() łączy elementy tablicy w jeden tekst.
+<?php
+$imiona = array(
+    "Jan",
+    "Anna",
+    "Tomasz",
+    "Zofia"
+);
+
+echo implode(" ", $imiona);
+?>
+
+Wynik:
+Jan Anna Tomasz Zofia
+
+Pierwszy argument:
+" "
+
+jest separatorem, czyli znakiem umieszczanym pomiędzy elementami.
+Możemy użyć przecinka:
+echo implode(", ", $imiona);
+
+Wynik:
+Jan, Anna, Tomasz, Zofia
+
+
+12. Operatory arytmetyczne
+Podstawowe operatory arytmetyczne w PHP:
+Operator
+Znaczenie
++
+dodawanie
+-
+odejmowanie
+*
+mnożenie
+/
+dzielenie
+%
+modulo – reszta z dzielenia
+**
+potęgowanie
+
+Poprawiony program:
+<?php
+$a = 5;
+b=3;echo"Sumaa+b=".(a + b)."<br>";echo"Różnicaa-b=".(a - b)."<br>";echo"Iloczyna*b=".(a * b)."<br>";echo"Iloraza/b=".(a / b)."<br>";echo"Moduloa%b=".(a % b)."<br>";echo"adopotęgib=".(a ** $b) . "<br>";
+?>
+
+Wynik:
+Suma a + b = 8
+Różnica a - b = 2
+Iloczyn a * b = 15
+Iloraz a / b = 1.666...
+Modulo a % b = 2
+a do potęgi b = 125
+
+Najważniejsze:
+5 % 3
+
+daje:
+2
+
+ponieważ po podzieleniu 5 przez 3 zostaje reszta 2.
+
+13. Pętla while
+Pętla while wykonuje kod tak długo, jak długo warunek jest prawdziwy.
+<?php
+x=5;while(x >= 1) {
+    echo "Liczba: $x <br>";
+    $x--;
+}
+?>
+
+Wynik:
+Liczba: 5
+Liczba: 4
+Liczba: 3
+Liczba: 2
+Liczba: 1
+
+$x-- zmniejsza wartość o 1.
+
+14. Pętla do...while
+Pętla do...while różni się od while tym, że kod wykona się co najmniej jeden raz, nawet jeśli warunek jest od początku fałszywy.
+<?php
+$x = 1;
+
+do {
+    echo "Liczba: $x <br>";
+    $x++;
+} while ($x <= 5);
+?>
+
+Wynik:
+Liczba: 1
+Liczba: 2
+Liczba: 3
+Liczba: 4
+Liczba: 5
+
+Schemat:
+do {
+    // kod
+} while (warunek);
+
+
+15. Pętla for
+Pętla for jest często używana, gdy wiemy, ile razy chcemy wykonać instrukcję.
+Liczby od 10 do 0
+<?php
+for ($x = 10; $x >= 0; $x--) {
+    echo "Wynik: $x <br>";
+}
+?>
+
+Wynik:
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+
+Schemat:
+for (start; warunek; zmiana) {
+    // kod
+}
+
+W naszym przykładzie:
+$x = 10
+
+– wartość początkowa.
+$x >= 0
+
+– warunek.
+$x--
+
+– zmniejszanie wartości o 1.
+
+16. Liczby parzyste
+Liczby parzyste można sprawdzać za pomocą operatora modulo %.
+Jeżeli:
+$liczba % 2 == 0
+
+to liczba jest parzysta.
+Program:
+<?php
+x=0;while(x <= 10) {
+    if ($x % 2 == 0) {
+        echo "Liczba: $x <br>";
+    }
+
+    $x++;
+}
+?>
+
+Wynik:
+Liczba: 0
+Liczba: 2
+Liczba: 4
+Liczba: 6
+Liczba: 8
+Liczba: 10
+
+
+17. shuffle() – mieszanie tablicy
+shuffle() losowo zmienia kolejność elementów tablicy.
+<?php
+a=array("red","green","blue","yellow","brown");printr(a);
+
+echo "<br>";
+
+shuffle(a);printr(a);
+?>
+
+Przed shuffle():
+red green blue yellow brown
+
+Po shuffle() kolejność może być np.:
+blue brown red yellow green
+
+Przy każdym uruchomieniu kolejność może być inna.
+
+18. str_split() – dzielenie tekstu
+str_split() rozdziela tekst na elementy tablicy.
+Poprawiony program:
+<?php
+$str = "Hello Friend";
+
+arr1=strsplit(str);
+arr2=strsplit(str, 3);
+
+print_r(arr1);echo"<br>";printr(arr2);
+?>
+
+str_split($str)
+Każdy znak zostanie osobnym elementem tablicy.
+str_split($str, 3)
+Tekst zostanie podzielony na fragmenty po maksymalnie 3 znaki.
+Dla:
+Hello Friend
+
+otrzymamy między innymi:
+Hel
+lo 
+Fri
+end
+
+Uwaga: w Twoim kodzie brakowało znaków $:
+$arr1
+$arr2
+$str
+
+oraz funkcja musi być zapisana:
+str_split()
+
+
+19. Instrukcja switch
+switch pozwala sprawdzić wartość zmiennej i wykonać odpowiedni fragment kodu.
+<?php
+favcolor="red";switch(favcolor) {
+    case "red":
+        echo "Your favorite color is red";
+        break;
+
+    case "blue":
+        echo "Your favorite color is blue";
+        break;
+
+    default:
+        echo "Your favorite color is neither red nor blue";
+}
+?>
+
+Jak działa?
+Jeżeli:
+$favcolor = "red";
+
+program przejdzie do:
+case "red":
+
+i wyświetli:
+Your favorite color is red
+
+break
+break kończy wykonywanie danego przypadku.
+default
+default wykona się, gdy żaden case nie pasuje.
+
+20. Najważniejsze rzeczy do zapamiętania
+Operatory zwiększania i zmniejszania
+$x++;
+
+zwiększa o 1.
+$x--;
+
+zmniejsza o 1.
+++$x;
+
+najpierw zwiększa, potem używa wartości.
+$x++;
+
+najpierw używa wartości, potem zwiększa.
+Warunki
+if
+else
+
+służą do wykonywania kodu zależnie od warunku.
+switch
+case
+default
+
+służą do wyboru jednej z kilku możliwości.
+Pętle
+while
+
+– wykonuje kod, dopóki warunek jest prawdziwy.
+do...while
+
+– wykona kod minimum raz.
+for
+
+– wygodna, gdy znamy liczbę powtórzeń lub mamy licznik.
+Tablice
+array_slice()
+
+– wycina fragment tablicy.
+array_splice()
+
+– dodaje, usuwa lub zamienia elementy.
+shuffle()
+
+– miesza elementy.
+implode()
+
+– łączy elementy tablicy w tekst.
+str_split()
+
+– dzieli tekst na tablicę.
+Sortowanie
+asort()
+
+– sortowanie według wartości.
+ksort()
+
+– sortowanie według kluczy.
+Matematyka
++
+-
+*
+/
+%
+**
+
+odpowiednio:
+dodawanie
+odejmowanie
+mnożenie
+dzielenie
+reszta z dzielenia
+potęgowanie
+
